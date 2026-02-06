@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>YouTube Sentiment Analyzer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <h2>YouTube Comment Sentiment Analysis</h2>
+
+    <form method="POST">
+        <input type="text" name="video_id" placeholder="Enter YouTube Video ID" required>
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if results %}
+    <p><strong>Total comments analyzed:</strong> {{ results|length }}</p>
+    {% if sentiment_counts %}
+    <div class="sentiment-summary">
+        <span class="positive">
+            Positive: {{ sentiment_counts.get('Positive', 0) }}
+        </span>
+
+        <span class="neutral">
+            Neutral: {{ sentiment_counts.get('Neutral', 0) }}
+        </span>
+
+        <span class="negative">
+            Negative: {{ sentiment_counts.get('Negative', 0) }}
+        </span>
+    </div>
+    {% endif %}
+
+    <table>
+        <tr>
+            <th>Comment</th>
+            <th>Sentiment</th>
+            <th>Confidence</th>
+        </tr>
+
+        {% for row in results %}
+        <tr>
+            <td>{{ row.comment }}</td>
+
+            <td class="
+                {% if row.sentiment == 'Positive' %}positive
+                {% elif row.sentiment == 'Negative' %}negative
+                {% else %}neutral
+                {% endif %}
+            ">
+                {{ row.sentiment }}
+            </td>
+
+            <td>{{ row.confidence }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    {% if sentiment_counts %}
+    <h3>Sentiment Distribution</h3>
+
+    <canvas id="sentimentChart" data-positive="{{ sentiment_counts.get('Positive', 0) }}"
+        data-neutral="{{ sentiment_counts.get('Neutral', 0) }}"
+        data-negative="{{ sentiment_counts.get('Negative', 0) }}" width="400" height="200">
+    </canvas>
+    {% endif %}
+    {% endif %}
+    <!-- JS ALWAYS loaded at the end -->
+    <script src="{{ url_for('static', filename='charts.js') }}"></script>
+
+</body>
+
+</html>

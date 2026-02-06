@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 300px;
+}
+
+button {
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.positive {
+    color: green;
+    font-weight: bold;
+}
+
+.negative {
+    color: red;
+    font-weight: bold;
+}
+
+.neutral {
+    color: orange;
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+}
+.sentiment-summary {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.sentiment-summary span {
+    margin-right: 25px;
+}
+.sentimentChart{
+    height: 200px;
+    width: 400px;
+}
