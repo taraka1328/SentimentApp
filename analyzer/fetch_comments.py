@@ -1,6 +1,6 @@
 from googleapiclient.discovery import build
 
-API_KEY = os.environ.get("AIzaSyAGs3__UuQ8xtxKSLU0-buqxzK4aJ2i760")
+API_KEY = os.environ.get("API_KEY_VALUE")
 
 def fetch_comments_all(video_id):
     """
